@@ -77,16 +77,17 @@
                                 <pre>
 <code class="language-js line-numbers">
 //sunset hills algorithm
+//output will be an array of booleans
 function sunsetHills(buildingHeights) {
-    sunsetHillsOutput = []
-    highestBuilding = 0;
+    let sunsetHillsOutput = new Array();
+    let highestBuilding = 0;
     for (i = 0; i < buildingHeights.length; i++) {
         if (buildingHeights[i] <= highestBuilding) {
-            sunsetHillsOutput[i] = false;
+            sunsetHillsOutput.push(false);
             continue;
         }
         highestBuilding = buildingHeights[i];
-        sunsetHillsOutput[i] = true;
+        sunsetHillsOutput.push(true);
     }
 
     return sunsetHillsOutput;

@@ -110,15 +110,15 @@
 
         //sunset hills algorithm
         function sunsetHills(buildings) {
-            sunsetHillsOutput = []
-            highestBuilding = 0;
+            let sunsetHillsOutput = new Array();
+            let highestBuilding = 0;
             for (i = 0; i < buildings.length; i++) {
                 if (buildings[i] <= highestBuilding) {
-                    sunsetHillsOutput[i] = "no-sun"
+                    sunsetHillsOutput.push('no-sun')
                     continue;
                 }
                 highestBuilding = buildings[i];
-                sunsetHillsOutput[i] = "sun"
+                sunsetHillsOutput.push("sun");
             }
 
             return sunsetHillsOutput;
