@@ -54,6 +54,9 @@ table{
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     overflow-y: scroll;
+    background-image: url("../Images/sun-bg.svg");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .content-centered {
@@ -248,4 +251,11 @@ html, body {
 
 :root {
     --animate-delay: 0.5s;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid white;
+    border-top: 1px solid white;
 }
