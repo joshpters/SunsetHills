@@ -9,7 +9,7 @@ featured on a Geeks for Geeks blog post titled “Amazon Interview Experience | 
 This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript.
 All logic & JavaScript DOM changes were custom coded for this project.
 
-![Screenshot](/images/sunset-hills-screenshot.png)
+![Screenshot](/Images/sunset-hills-screenshot.png)
 Format: ![Alt Text](url)
 
 ## License
