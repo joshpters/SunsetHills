@@ -40,13 +40,10 @@
                             <a class="nav-link" href="/Code.html">Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Git</a>
+                            <a class="nav-link" href="https://github.com/joshpters/SunsetHills">Git</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog Post/YouTube Explanation</a>
+                            <a class="nav-link" href="https://joshua-peters.netlify.app">Portfolio</a>
                         </li>
                     </ul>
                 </div>
@@ -85,11 +82,11 @@
                 </div>
                 <div class="col">
                     <div class="buildings-container" id="buildings-container">
-                        <div style="height: 25%" class="building animate__bounceIn"></div>
-                        <div style="height: 50%" class="building animate__bounceIn"></div>
-                        <div style="height: 25%" class="building animate__bounceIn"></div>
-                        <div style="height: 100%" class="building animate__bounceIn"></div>
-                        <div style="height: 25%" class="building animate__bounceIn"></div>
+                        <div class="building animate__bounceIn"></div>
+                        <div class="building animate__bounceIn"></div>
+                        <div class="building animate__bounceIn"></div>
+                        <div class="building animate__bounceIn"></div>
+                        <div class="building animate__bounceIn"></div>
                     </div>
                 </div>
             </div>
@@ -121,7 +118,7 @@
 
         sunsetHills([1, 2, 1, 4, 5, 2])
 
-        //update visual building heights on keypress
+        //update on keypress
         document.querySelectorAll('.building-input').forEach(item => {
             item.addEventListener('keyup', event => {
                 buildingHeights = []
@@ -129,12 +126,20 @@
                 for (i = 0; i < inputs.length; i++) {
                     buildingHeights[i] = Number(inputs[i].value)
                 };
+                console.log(buildingHeights)
                 updateVisualBuildings(buildingHeights, sunsetHills(buildingHeights));
             })
         })
 
+
+        //update building heights by percentage, 100% being the largest height in the array
         function updateVisualBuildings(buildings, buildingStatus) {
             max = Math.max(...buildings)
+
+            //account for dividing by zero
+            if (max == 0) {
+                max = 1;
+            }
             buildingElements = document.querySelectorAll('.buildings-container > *');
 
             for (i = 0; i < buildingElements.length; i++) {
@@ -148,8 +153,10 @@
             }
         }
 
+        //default setup
         updateVisualBuildings([1, 2, 1, 4, 1], ['sun', 'sun', 'no-sun', 'sun', 'no-sun'])
 
+        //prevent non-numerical characters from being entered
         document.querySelectorAll('input').forEach(item => {
             item.addEventListener("keypress", function (evt) {
                 if (evt.which < 48 || evt.which > 57) {

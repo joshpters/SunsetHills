@@ -21,7 +21,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/Index.html">TacocaT</a>
+                <a class="navbar-brand" href="/Index.html">Sunset Hills</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,13 +39,10 @@
                             <a class="nav-link active" href="/Code.html">Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Git</a>
+                            <a class="nav-link" href="https://github.com/joshpters/SunsetHills">Git</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog Post/YouTube Explanation</a>
+                            <a class="nav-link" href="https://joshua-peters.netlify.app">Portfolio</a>
                         </li>
                     </ul>
                 </div>
@@ -78,58 +75,101 @@
                             <div class="tab-pane fade show active" id="javascript" role="tabpanel" aria-labelledby="home-tab">
                                 <pre>
 <code class="language-js line-numbers">
-function tacocat() {
-    inputText = document.getElementById('input-string').value
-    output = document.getElementById('output')
-
-    if (!inputText) {
-    output.style.border = "1px solid red"
-    output.style.color = "red"
-    output.innerHTML = "Please enter some text to reverse."
-    return
+//sun algorithm
+function sunsetHills(buildings) {
+    sunsetHillsOutput = []
+    highestBuilding = 0;
+        for (i = 0; i < buildings.length; i++) {
+            if (buildings[i] <= highestBuilding) {
+            sunsetHillsOutput[i] = false;
+            continue;
+        }
+        highestBuilding = buildings[i];
+        sunsetHillsOutput[i] = true;
     }
 
-    output.style.border = "1px solid #fcd088"
-    output.style.color = "#fcd088"
-
-
-    output.innerHTML = reverseText(inputText);
-
-    outputText = reverseText(inputText);
-
-    if (validate(inputText, outputText)){
-    console.log("TACOCAT!!!")
-    }
-
+    return sunsetHillsOutput;
 }
 
-function validate(textOne, textTwo) {
-textOne = textOne.replace(/\s|\'|\"/g, '');
-textTwo = textTwo.replace(/\s|\'|\"/g, '');
-
-if (textOne.toLowerCase() == textTwo.toLowerCase()) {
-    return true;
-}
-
-    return false;
-}
-
-function reverseText(text) {
-    let output = "";
-    for (let i = text.length - 1; i >= 0; i--) {
-        output += text[i];
-    }
-    return output;
-}
-
-document.getElementById('solve-button').addEventListener('click', function (event) {
-    tacocat();
-});
 </code>
                                             </pre>
                             </div>
-                            <div class="tab-pane fade" id="html" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                            <div class="tab-pane fade" id="css" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                            <div class="tab-pane fade" id="html" role="tabpanel" aria-labelledby="profile-tab">
+<pre>
+    <code class="language-html line-numbers">
+        &lt;div class="content content-centered"&gt;
+            &lt;div class="container full-height" id="content-container"&gt;
+                &lt;div class="row text-center"&gt;
+                    &lt;div class="col"&gt;
+                        &lt;h1&gt;Sunset Hills&lt;/h1&gt;
+                        &lt;p&gt;Enter a value for the height of each building to see which building can see the sunset.&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="row bottom-buffer input-row"&gt;
+                    &lt;div class="col-lg-2 offset-lg-1 col-sm-12"&gt;
+                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-lg-2 col-sm-12"&gt;
+                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-lg-2 col-sm-12"&gt;
+                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-lg-2 col-sm-12"&gt;
+                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col-lg-2 col-sm-12"&gt;
+                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="row"&gt;
+                    &lt;div class="col-3 animate__bounceIn"&gt;
+                        &lt;img src="Images/sun.svg" /&gt;
+                    &lt;/div&gt;
+                    &lt;div class="col"&gt;
+                        &lt;div class="buildings-container" id="buildings-container"&gt;
+                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    </code>
+</pre>
+                            </div>
+                            <div class="tab-pane fade" id="css" role="tabpanel" aria-labelledby="contact-tab">
+<pre>
+    <code class="language-css">
+.buildings-container {
+    height:30rem;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.building {
+    transition: height 0.3s ease-out;
+    transform-origin: bottom;
+    color: #202529;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 18%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.sun {
+    background-color: #fcd088;
+}
+.no-sun {
+    background-color: #8a7148;
+}
+    </code>
+</pre>
+                            </div>
                         </div>
                         <!-- COLLAPSIBLE CODE PREVIEW -->
                         <!--<div class="accordion" id="accordionExample">
