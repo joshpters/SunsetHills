@@ -225,7 +225,8 @@
             //duplication the last element of the array
             values.push(values[values.length - 1])
             //randomize the second from last element in the array
-            values[values.length - 2] = randomNumber(1, Math.max(...values))
+            console.log(Math.max(...values) * 2)
+            values[values.length - 2] = randomNumber(1, Math.max(...values)*1.5)
 
             setNumberOfBuildings(numberOfBuildings);
             setNumberOfInputs(numberOfBuildings);
