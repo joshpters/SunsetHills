@@ -55,6 +55,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h1 class="mt-5">Code Preview</h1>
+                        <p>These are snippets of code from the core of this project. Features such as animations and dynamic DOM changes are not included here.</p>
                     </div>
                 </div>
                 <div class="row customNav">
@@ -75,16 +76,16 @@
                             <div class="tab-pane fade show active" id="javascript" role="tabpanel" aria-labelledby="home-tab">
                                 <pre>
 <code class="language-js line-numbers">
-//sun algorithm
-function sunsetHills(buildings) {
+//sunset hills algorithm
+function sunsetHills(buildingHeights) {
     sunsetHillsOutput = []
     highestBuilding = 0;
-        for (i = 0; i < buildings.length; i++) {
-            if (buildings[i] <= highestBuilding) {
+        for (i = 0; i < buildingHeights.length; i++) {
+            if (buildingHeights[i] <= highestBuilding) {
             sunsetHillsOutput[i] = false;
             continue;
         }
-        highestBuilding = buildings[i];
+        highestBuilding = buildingHeights[i];
         sunsetHillsOutput[i] = true;
     }
 
@@ -107,19 +108,19 @@ function sunsetHills(buildings) {
                 &lt;/div&gt;
                 &lt;div class="row bottom-buffer input-row"&gt;
                     &lt;div class="col-lg-2 offset-lg-1 col-sm-12"&gt;
-                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                        &lt;input type="text" class="building-input input-string"/&gt;
                     &lt;/div&gt;
                     &lt;div class="col-lg-2 col-sm-12"&gt;
-                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                        &lt;input type="text" class="building-input input-string"/&gt;
                     &lt;/div&gt;
                     &lt;div class="col-lg-2 col-sm-12"&gt;
-                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                        &lt;input type="text" class="building-input input-string"/&gt;
                     &lt;/div&gt;
                     &lt;div class="col-lg-2 col-sm-12"&gt;
-                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                        &lt;input type="text" class="building-input input-string"/&gt;
                     &lt;/div&gt;
                     &lt;div class="col-lg-2 col-sm-12"&gt;
-                        &lt;input type="text" class="building-input input-string" value="" placeholder="" /&gt;
+                        &lt;input type="text" class="building-input input-string"/&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
@@ -128,11 +129,11 @@ function sunsetHills(buildings) {
                     &lt;/div&gt;
                     &lt;div class="col"&gt;
                         &lt;div class="buildings-container" id="buildings-container"&gt;
-                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
-                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
-                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
-                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
-                            &lt;div class="building animate__bounceIn"&gt;&lt;/div&gt;
+                            &lt;div class="building"&gt;&lt;/div&gt;
+                            &lt;div class="building"&gt;&lt;/div&gt;
+                            &lt;div class="building"&gt;&lt;/div&gt;
+                            &lt;div class="building"&gt;&lt;/div&gt;
+                            &lt;div class="building"&gt;&lt;/div&gt;
                         &lt;/div&gt;
                     &lt;/div&gt;
                 &lt;/div&gt;
