@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FizzBuzz Challenge</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="Content/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<body>
+
+    <div id="window">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/Index.html">Sunset Hills</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/Solve.html">Solve</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Code.html">Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Git</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog Post/YouTube Explanation</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    <!-- Page Content -->
+    <div class="content content-centered">
+        <div class="container full-height" id="content-container">
+            <div class="row text-center">
+                <div class="col">
+                    <h1>Sunset Hills</h1>
+                    <p>Enter a value for the height of each building to see which building can see the sunset.</p>
+                </div>
+            </div>
+            <div class="row bottom-buffer input-row">
+                <div class="col-lg-2 offset-lg-1 col-sm-12">
+                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <input type="text"  class="building-input input-string" value="" placeholder="" />
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <input type="text"  class="building-input input-string" value="" placeholder="" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 animate__bounceIn">
+                    <img src="Images/sun.svg" />
+                </div>
+                <div class="col">
+                    <div class="buildings-container" id="buildings-container">
+                        <div style="height: 25%" class="building animate__bounceInDown"></div>
+                        <div style="height: 50%" class="building animate__bounceInDown"></div>
+                        <div style="height: 25%" class="building animate__bounceInDown"></div>
+                        <div style="height: 100%" class="building animate__bounceInDown"></div>
+                        <div style="height: 25%" class="building animate__bounceInDown"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="//code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <script>
+
+        //sun algorithm
+        function sunsetHills(buildings) {
+            sunsetHillsOutput = []
+            highestBuilding = 0;
+            for (i = 0; i < buildings.length; i++) {
+                if (buildings[i] <= highestBuilding) {
+                    sunsetHillsOutput[i] = "no-sun"
+                    continue;
+                }
+                highestBuilding = buildings[i];
+                sunsetHillsOutput[i] = "sun"
+            }
+
+            return sunsetHillsOutput;
+        }
+
+        sunsetHills([1, 2, 1, 4, 5, 2])
+
+        //update visual building heights on keypress
+        document.querySelectorAll('.building-input').forEach(item => {
+            item.addEventListener('keyup', event => {
+                buildingHeights = []
+                inputs = document.querySelectorAll('.input-row input')
+                for (i = 0; i < inputs.length; i++) {
+                    buildingHeights[i] = Number(inputs[i].value)
+                };
+                updateVisualBuildings(buildingHeights, sunsetHills(buildingHeights));
+            })
+        })
+
+        function updateVisualBuildings(buildings, buildingStatus) {
+            max = Math.max(...buildings)
+            buildingElements = document.querySelectorAll('.buildings-container > *');
+
+            for (i = 0; i < buildingElements.length; i++) {
+                height = (buildings[i] / max) * 100;
+                buildingElements[i].style.height = `${height}%`
+
+                buildingElements[i].classList.remove('sun')
+                buildingElements[i].classList.remove('no-sun')
+
+                buildingElements[i].classList.add(buildingStatus[i])
+            }
+        }
+
+        updateVisualBuildings([1, 2, 1, 4, 1], ['sun', 'sun', 'no-sun', 'sun', 'no-sun'])
+
+        document.querySelectorAll('input').forEach(item => {
+            item.addEventListener("keypress", function (evt) {
+                if (evt.which < 48 || evt.which > 57) {
+                    evt.preventDefault();
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
