@@ -56,7 +56,12 @@
             <div class="row text-center">
                 <div class="col">
                     <h1>Sunset Hills</h1>
-                    <p>Enter a value for the height of each building to see which building can see the sunset.</p>
+                    <ul class="list-unstyled">
+                        <li>Enter a value for the height of each building to see which building can see the sunset.</li>
+                        <li>Clicking on the sun will reset the layout, the far right building will add buildings and the far left building will remove buildings.</li>
+                    </ul>
+                    <p></p>
+                    <p></p>
                 </div>
             </div>
             <div class="row bottom-buffer input-row">
@@ -101,7 +106,7 @@
     <script>
         //default settings
         let numberOfBuildings = defaultNumberOfBuildings = 5;
-        let values = defaultValues = [1,2,1,4,2]
+        let values = defaultValues = [2,4,2,8,4]
 
         //sunset hills algorithm
         function sunsetHills(buildings) {

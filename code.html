@@ -80,8 +80,8 @@
 function sunsetHills(buildingHeights) {
     sunsetHillsOutput = []
     highestBuilding = 0;
-        for (i = 0; i < buildingHeights.length; i++) {
-            if (buildingHeights[i] <= highestBuilding) {
+    for (i = 0; i < buildingHeights.length; i++) {
+        if (buildingHeights[i] <= highestBuilding) {
             sunsetHillsOutput[i] = false;
             continue;
         }
