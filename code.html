@@ -81,12 +81,18 @@
 function sunsetHills(buildingHeights) {
     let sunsetHillsOutput = new Array();
     let highestBuilding = 0;
+
+    //loop through array
     for (i = 0; i < buildingHeights.length; i++) {
+
+        //is there a building taller than this building? If so, no sunlight. Otherwise, sunlight.
         if (buildingHeights[i] <= highestBuilding) {
             sunsetHillsOutput.push(false);
             continue;
         }
+        //This is the tallest building so far, so we add it to the variable "highest building" for reference
         highestBuilding = buildingHeights[i];
+
         sunsetHillsOutput.push(true);
     }
 
@@ -125,7 +131,7 @@ function sunsetHills(buildingHeights) {
                     &lt;/div&gt;
                 &lt;/div&gt;
                 &lt;div class="row"&gt;
-                    &lt;div class="col-3 animate__bounceIn"&gt;
+                    &lt;div class="col-3"&gt;
                         &lt;img src="Images/sun.svg" /&gt;
                     &lt;/div&gt;
                     &lt;div class="col"&gt;
