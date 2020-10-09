@@ -60,33 +60,33 @@
                 </div>
             </div>
             <div class="row bottom-buffer input-row">
-                <div class="col-lg-2 offset-lg-1 col-sm-12">
-                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                <div class="col-lg col-sm-12">
+                    <input type="text" class="building-input input-string" value="1" placeholder="" />
                 </div>
-                <div class="col-lg-2 col-sm-12">
-                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                <div class="col-lg col-sm-12">
+                    <input type="text" class="building-input input-string" value="2" placeholder="" />
                 </div>
-                <div class="col-lg-2 col-sm-12">
-                    <input type="text" class="building-input input-string" value="" placeholder="" />
+                <div class="col-lg col-sm-12">
+                    <input type="text" class="building-input input-string" value="1" placeholder="" />
                 </div>
-                <div class="col-lg-2 col-sm-12">
-                    <input type="text"  class="building-input input-string" value="" placeholder="" />
+                <div class="col-lg col-sm-12">
+                    <input type="text"  class="building-input input-string" value="4" placeholder="" />
                 </div>
-                <div class="col-lg-2 col-sm-12">
-                    <input type="text"  class="building-input input-string" value="" placeholder="" />
+                <div class="col-lg col-sm-12">
+                    <input type="text"  class="building-input input-string" value="1" placeholder="" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-3 animate__bounceIn">
-                    <img src="Images/sun.svg" />
+                    <img id="reset" src="Images/sun.svg" />
                 </div>
                 <div class="col">
                     <div class="buildings-container" id="buildings-container">
+                        <div class="first_building building animate__bounceIn text-center"><h1>-</h1></div>
                         <div class="building animate__bounceIn"></div>
                         <div class="building animate__bounceIn"></div>
                         <div class="building animate__bounceIn"></div>
-                        <div class="building animate__bounceIn"></div>
-                        <div class="building animate__bounceIn"></div>
+                        <div class="last_building building animate__bounceIn text-center"><h1>+</h1></div>
                     </div>
                 </div>
             </div>
@@ -99,8 +99,11 @@
     <script src="//stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     <script>
+        //default settings
+        let numberOfBuildings = defaultNumberOfBuildings = 5;
+        let values = defaultValues = [1,2,1,4,2]
 
-        //sun algorithm
+        //sunset hills algorithm
         function sunsetHills(buildings) {
             sunsetHillsOutput = []
             highestBuilding = 0;
@@ -116,25 +119,45 @@
             return sunsetHillsOutput;
         }
 
-        sunsetHills([1, 2, 1, 4, 5, 2])
-
-        //update on keypress
-        document.querySelectorAll('.building-input').forEach(item => {
-            item.addEventListener('keyup', event => {
-                buildingHeights = []
-                inputs = document.querySelectorAll('.input-row input')
-                for (i = 0; i < inputs.length; i++) {
-                    buildingHeights[i] = Number(inputs[i].value)
-                };
-                console.log(buildingHeights)
-                updateVisualBuildings(buildingHeights, sunsetHills(buildingHeights));
+        //update all event listeners
+        function addEventListeners() {
+            document.querySelectorAll('.building-input').forEach(item => {
+                item.addEventListener('keyup', event => {
+                    updateBuildingHeights();
+                })
             })
-        })
+
+            document.querySelector('.last_building').addEventListener('click', function () {
+                addBuilding();
+            })
+            document.querySelector('.first_building').addEventListener('click', function () {
+                removeBuilding();
+            })
+
+            document.querySelectorAll('input').forEach(item => {
+                item.addEventListener("keypress", function (evt) {
+                    if (evt.which < 48 || evt.which > 57) {
+                        evt.preventDefault();
+                    }
+                });
+            });
+        }
+
+        //update building heights from input
+        function updateBuildingHeights() {
+            buildingHeights = []
+            inputs = document.querySelectorAll('.input-row input')
+            for (i = 0; i < inputs.length; i++) {
+                buildingHeights[i] = Number(inputs[i].value)
+            };
+            values = buildingHeights;
+            updateVisualBuildings(buildingHeights, sunsetHills(buildingHeights));
+        }
 
 
         //update building heights by percentage, 100% being the largest height in the array
-        function updateVisualBuildings(buildings, buildingStatus) {
-            max = Math.max(...buildings)
+        function updateVisualBuildings(buildingHeights, buildingStatus) {
+            max = Math.max(...buildingHeights)
 
             //account for dividing by zero
             if (max == 0) {
@@ -143,7 +166,7 @@
             buildingElements = document.querySelectorAll('.buildings-container > *');
 
             for (i = 0; i < buildingElements.length; i++) {
-                height = (buildings[i] / max) * 100;
+                height = (buildingHeights[i] / max) * 100;
                 buildingElements[i].style.height = `${height}%`
 
                 buildingElements[i].classList.remove('sun')
@@ -153,17 +176,98 @@
             }
         }
 
-        //default setup
-        updateVisualBuildings([1, 2, 1, 4, 1], ['sun', 'sun', 'no-sun', 'sun', 'no-sun'])
 
-        //prevent non-numerical characters from being entered
-        document.querySelectorAll('input').forEach(item => {
-            item.addEventListener("keypress", function (evt) {
-                if (evt.which < 48 || evt.which > 57) {
-                    evt.preventDefault();
-                }
-            });
-        });
+        function setNumberOfBuildings(number) {
+            let startBuildingHTML = `<div class="first_building building animate__bounceIn text-center"><h1>-</h1></div>`
+            let midBuildingHTML = `<div class="building animate__bounceIn"></div>`
+            let lastBuildingHTML = `<div class="last_building building animate__bounceIn text-center"><h1>+</h1></div>`
+
+            let width = 100 / number - 2;
+            let margin = 1;
+
+            let HTML = startBuildingHTML;
+
+            for (i = 0; i < number - 2; i++) {
+                HTML += midBuildingHTML;
+            }
+
+            HTML += lastBuildingHTML;
+
+            document.querySelector('.buildings-container').innerHTML = HTML;
+
+            document.querySelectorAll('.buildings-container > *').forEach(building => {
+                building.style.width = `${width}%`
+                building.style.marginLeft = `${margin}%`
+                building.style.marginRight = `${margin}%`
+            })
+
+        }
+
+        function setNumberOfInputs(number) {
+            let inputContainer = document.querySelector('.input-row')
+            //reset HTML
+            inputContainer.innerHTML = ""
+
+            for (let i = 0; i < number; i++) {
+                inputContainer.innerHTML += `<div class="col-lg col-sm-12">
+                                                <input type="text"  class="building-input input-string" value="${values[i]}" placeholder="" />
+                                             </div>`;
+            }
+
+        }
+
+        function addBuilding() {
+            //no greater than 12 buildings
+            if (numberOfBuildings >= 12) {
+                return;
+            }
+            numberOfBuildings += 1;
+            //duplication the last element of the array
+            values.push(values[values.length - 1])
+            //randomize the second from last element in the array
+            values[values.length - 2] = randomNumber(1, Math.max(...values))
+
+            setNumberOfBuildings(numberOfBuildings);
+            setNumberOfInputs(numberOfBuildings);
+            updateBuildingHeights();
+            addEventListeners();
+        }
+
+        function removeBuilding() {
+            //no less than 3 buildings
+            if (numberOfBuildings <= 3) {
+                return
+            }
+            numberOfBuildings -= 1;
+            //remove second from last element
+            values.splice(values.length - 2, 1)
+            setNumberOfBuildings(numberOfBuildings);
+            setNumberOfInputs(numberOfBuildings);
+            updateBuildingHeights();
+            addEventListeners();
+        }
+
+        //generate random integer in range
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }  
+
+        //reset to default settings
+        function reset() {
+            values = defaultValues;
+            numberOfBuildings = defaultNumberOfBuildings;
+            setNumberOfBuildings(defaultNumberOfBuildings);
+            setNumberOfInputs(defaultNumberOfBuildings);
+            addEventListeners()
+            updateBuildingHeights();
+        }
+
+        document.getElementById('reset').addEventListener('click', function () {
+            reset();
+        })
+
+        //setup default on page load
+        reset();
 
     </script>
 
