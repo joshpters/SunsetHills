@@ -4,6 +4,9 @@ This is a complete minisite that contains a visual representation of the "Sunset
 
 ![Screenshot](/Images/sunset-hills-screenshot.png)
 
+This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript.
+All logic & JavaScript DOM changes were custom coded for this project.
+
 ## What is the "Sunset Hills" challenge?
 
 Sunset Hills is an array manipulation challenge: the sun is setting in the West, and from West to East the heights of each
@@ -45,9 +48,6 @@ function sunsetHills(buildingHeights) {
     return sunsetHillsOutput;
 }
 ```
-
-This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript.
-All logic & JavaScript DOM changes were custom coded for this project.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
