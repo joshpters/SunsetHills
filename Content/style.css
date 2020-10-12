@@ -57,12 +57,28 @@ table{
     background-color: #242a30;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    overflow-y: scroll;
+
     background-image: url("../Images/sun-bg.svg");
     background-repeat: no-repeat;
     background-position: center;
     
 }
+
+.scrollable {
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
 
 .content-centered {
     display: flex;
@@ -83,12 +99,6 @@ table{
 
 .customNav a{
     color:white;
-}
-
-@media (min-width: 992px) {
-    #window {
-        width: 90%;
-    }
 }
 
 #window {
