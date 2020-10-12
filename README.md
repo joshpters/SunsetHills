@@ -2,7 +2,7 @@
 
 This is a complete minisite that contains a visual representation of the "Sunset Hills" challenge.
 
-![Screenshot](/Images/sunset-hills-screenshot.png)
+![Screenshot](/Images/screenshot.jpg)
 
 This project was created using Bootstrap 4.5, HTML5, CSS3, and JavaScript.
 All logic & JavaScript DOM changes were custom coded for this project.
